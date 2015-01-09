@@ -3,7 +3,7 @@ nojQuery = false
 if !window.jQuery
   script = document.createElement('script')
   script.type = "text/javascript"
-  script.src = "http://code.jquery.com/jquery-1.10.2.js"
+  script.src = "//code.jquery.com/jquery-1.10.2.js"
   document.getElementsByTagName('head')[0].appendChild(script)
 
   nojQuery = true
@@ -12,7 +12,7 @@ class Hashtag
   constructor: (@dom_element, options = {}) ->
     defaults =
       wrapper: "ht-wrapper"
-      iframeUrl: "http://www.hashtago.com/widgets/"
+      iframeUrl: "http://hashtago.com/widgets/"
       callback: null
       
     @options = jQuery.extend defaults, options
@@ -41,9 +41,10 @@ class Hashtag
       skin = jQuery("<div/>").addClass("hashtag-skin")
       loading = jQuery("<div/>").attr("id", "hashtag-loading").append("<div></div>")
 
-      overlay.append(wrap.append(skin.append(container))).append(loading)
+      overlay.append(loading)
+      wrap.append(skin.append(container))
 
-      jQuery('body').append(overlay)
+      jQuery('body').append(overlay).append(wrap)
       jQuery('body').css("position", "fixed")
 
       jQuery("#" + @frameName).load ->
@@ -77,7 +78,7 @@ class Hashtag
     container.css("height", this._contentHeight() + "px")
 
 
-    close = jQuery("<a href='javascript:void(0)' onclick='jQuery(\".hashtag-overlay\").remove();jQuery(\"body\").css(\"position\", \"static\")'></a>").addClass("hashtag-close")
+    close = jQuery("<a href='javascript:void(0)' onclick='jQuery(\".hashtag-overlay\").remove();jQuery(\".hashtag-wrap\").remove();jQuery(\"body\").css(\"position\", \"static\")'></a>").addClass("hashtag-close")
     title = jQuery("<div/>").addClass("hashtag-title").html(@hashtag.attr("title") + "<div class=\"hashtago-desc\">powered by <a href=\"http://www.hashtago.com\">Hashtago</a></div>")
     container.append(close).append(title)
 
@@ -87,7 +88,7 @@ class HashtagParser
       wrapper: "body"
       regex: /\[(\#\w+)\]/ig
       hashtagClass: "ht-init"
-      collectionUrl: "http://www.hashtago.com/widgets"
+      collectionUrl: "http://hashtago.com/widgets"
       cssUrl: "css/hashtag.css"
       
     @options = jQuery.extend defaults, options

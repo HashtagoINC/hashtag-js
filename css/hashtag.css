@@ -1,17 +1,23 @@
 #hashtag-container {
-  overflow: auto;
   width: 995px;
   padding-top: 100px;
+  position: absolute;
+  width: 995px;
+  top: 0;
+  z-index: 8500;
+  left: 50%;
+  margin: 0 0 0 -498px;
+
 }
 
-#hashtag-container .hashtag-close {
+.hashtag-close {
   background: #756f9b url('../images/close-icon.svg') no-repeat center center;
   background-size: 30px;
   width: 56px;
   height: 56px;
-  right: -60px;
+  right: 10px;
   position: absolute;
-  top: -18px;
+  top: 0;
   cursor: pointer;
   z-index: 8040;
 }
@@ -22,6 +28,7 @@
   height: 40px;
   background: #fff;
 }
+
 
 #hashtag-container .hashtag-title {
   font-size: 75px;
@@ -53,21 +60,7 @@
 }
 
 .hashtag-overlay .hashtag-wrap {
-  padding: 0;
-  margin: 0;
-  border: 0;
-  outline: none;
-  vertical-align: top;
-  z-index: 8030;
-  width: 950px;
-  height: auto;
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  margin-left: -475px;
-  opacity: 1;
-  overflow: visible;
-  display: block;
+
 }
 
 .hashtag-overlay .hashtag-skin {
@@ -86,7 +79,7 @@
   vertical-align: top;
 }
 
-.hashtag-overlay, .hashtag-iframe {
+.hashtag-overlay{
   display: block;
   width: 100%;
   height: 100%;
@@ -95,8 +88,20 @@
   border: 0;
   outline: none;
   vertical-align: top;
-  overflow: hidden;
 }
+
+ .hashtag-iframe {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: none;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto; 
+ }
 
 #hashtag-loading {
   position: fixed;
@@ -198,7 +203,11 @@
 .hashtago-desc a{color: #b3b3b3;}
 .hashtago-desc a:hover{color: #fff;}
 
-@media (max-width: 1100px) {
+.mobile-close{position: fixed; display: none;}
+
+.ffeedd{position: fixed; width: 100%; height: 100%; padding: 0px; margin: 0px;}
+
+/*@media (max-width: 1100px) {
 
 .hashtag-overlay .hashtag-wrap {
   padding: 0;
@@ -222,40 +231,71 @@ width: 100%!important;
 }
 
 }
+*/
 
-@media (max-width: 750px) {
+@media (min-width: 768px) and (max-width: 900px) {
+   
+   html { height: 100%; }
 
-.hashtag-overlay .hashtag-wrap {
-  padding: 0;
-  margin: 0;
-  border: 0;
-  outline: none;
-  vertical-align: top;
-  z-index: 8030;
-  width: 100%;
-  height: auto;
-  position: absolute;
-  top: 20px;
-  left: 0%;
-  opacity: 1;
-  overflow: visible;
-  display: block;
+  .ffeedd > *:not(#hashtag-container):not(.hashtag-overlay){display: none!important;}
+
+  #hashtag-container .hashtag-close{
+    right: 0px;
+    top: 0;
+  }
+
+  .hashtag-title{    
+
+/*    font-size: 35px!important;
+*/
+  }
+
+  .ffeedd{position: relative;height: 100%;overflow-x: hidden;overflow-y: auto;}
+
+
+  #hashtag-container {
+    padding: 0;
+    margin: 0;
+    left: 0px;
+    position: relative;
+    width: 100% !important;
+    height: 100% !important;
+    overflow:auto; 
+  }   
+
 }
 
-#hashtag-container .hashtag-close{
-  right: 0px;
-  top: 10px;
+
+@media (max-width: 768px) {
+
+  .ffeedd > *:not(#hashtag-container):not(.hashtag-overlay):not(.mobile-close){display: none!important;}
+
+ .hashtag-close{
+    right: 0px;
+    top: 0;
+  }
+
+  .hashtag-iframe{margin-top: 56px;}
+  .hashtago-desc{margin-top: 2px; font-size: 8px;}
+  .hashtag-title{font-size: 30px!important;top: 3px!important;}
+  #hashtag-container .hashtag-close{display: none;}
+  .mobile-close{display: block!important; z-index: 9000;}
+
+  .ffeedd{position: relative;height: 100%;overflow-x: hidden;overflow-y: auto;}
+
+
+  #hashtag-container {
+    padding: 0;
+    margin: 0;
+    left: 0px;
+    position: relative;
+    width: 100% !important;
+    height: 100% !important;
+    overflow:auto; 
+  }
 
 }
 
-#hashtag-container {
-width: 100%!important;
-height: 100%!important;
--webkit-overflow-scrolling: touch;
-overflow-y: scroll;
-}
-
-}
 
 
 

@@ -45,11 +45,14 @@ Hashtag = (function() {
         container.append(iframe);
         overlay = jQuery("<div/>").addClass("hashtag-overlay");
         wrap = jQuery("<div/>").addClass("hashtag-wrap");
-        skin = jQuery("<div/>").addClass("hashtag-skin");
+        mobClose = jQuery("<a href='javascript:void(0)' onclick='jQuery(\".hashtag-overlay\").remove();jQuery(\".mobile-close\").remove();jQuery(\"#hashtag-container\").remove();jQuery(\"body\").removeClass(\"ffeedd\");'></a>").addClass("hashtag-close mobile-close");
+        // skin = jQuery("<div/>").addClass("hashtag-skin");
         loading = jQuery("<div/>").attr("id", "hashtag-loading").append("<div></div>");
-        overlay.append(wrap.append(skin.append(container))).append(loading);
-        jQuery('body').append(overlay);
-        jQuery('body').css("position", "fixed");
+        overlay.append(loading);
+        // wrap.append(container);
+        jQuery('body').append(overlay).append(mobClose).append(container);
+        jQuery('body').addClass("ffeedd");
+        // jQuery('head').append('<meta id="ffeedd-meta" name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">');
         jQuery("#" + _this.frameName).load(function() {
           return jQuery('#hashtag-loading').hide();
         });
@@ -88,7 +91,7 @@ Hashtag = (function() {
     container = jQuery("<div/>");
     container.attr("id", "hashtag-container");
     container.css("height", this._contentHeight() + "px");
-    close = jQuery("<a href='javascript:void(0)' onclick='jQuery(\".hashtag-overlay\").remove();jQuery(\"body\").css(\"position\", \"static\")'></a>").addClass("hashtag-close");
+    close = jQuery("<a href='javascript:void(0)' onclick='jQuery(\".hashtag-overlay\").remove();jQuery(\"#hashtag-container\").remove();jQuery(\"body\").removeClass(\"ffeedd\");'></a>").addClass("hashtag-close");
     title = jQuery("<div/>").addClass("hashtag-title").html(this.hashtag.attr("title") + "<div class=\"hashtago-desc\">powered by <a href=\"http://www.hashtago.com\">Hashtago</a></div>");
     return container.append(close).append(title);
   };
